@@ -22,7 +22,6 @@ public class EnemySpawner : MonoBehaviour
                     currentWave.GetStartingWayPoint().position,
                     Quaternion.identity
                 );
-
                 yield return new WaitForSeconds(currentWave.GetRandomEnemySpawnTime());
             }
             yield return new WaitForSeconds(timeBetweenWaves);

@@ -198,7 +198,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d6a26be83c91ee408f09d011e55abac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Heath
-  heath: 50
+  heath: 10
+  hitParticle: {fileID: 8561120960844496894, guid: 2c2a6c6d40aeca944b2ee68deae6323e, type: 3}
 --- !u!114 &-3983237635595093863
 MonoBehaviour:
   m_ObjectHideFlags: 0
