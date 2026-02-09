@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class Heath : MonoBehaviour
 {
@@ -7,11 +8,19 @@ public class Heath : MonoBehaviour
     DamageDealer damageDealer;
     [SerializeField] bool applyCameraShake;
     CameraShake cameraShake;
+    AudioManager audioManager;
+    ScoreKeeper scoreKeeper;
+    UIUpdater uIUpdater;
+    LevelMananger levelMananger;
 
     void Start()
     {
         damageDealer = GetComponent<DamageDealer>();
         cameraShake = Camera.main.GetComponent<CameraShake>();
+        audioManager = FindFirstObjectByType<AudioManager>();
+        scoreKeeper = FindFirstObjectByType<ScoreKeeper>();
+        uIUpdater = FindFirstObjectByType<UIUpdater>();
+        levelMananger = FindFirstObjectByType<LevelMananger>();
     }
 
     void OnTriggerEnter2D(Collider2D collision)
@@ -21,15 +30,20 @@ public class Heath : MonoBehaviour
             TakeDamage(damageDealer.GetDamage());
             if (heath <= 0)
             {
-                damageDealer.Hit();
-            }  
+                damageDealer.Hit(); 
+            }
+            if (gameObject.CompareTag("Player"))
+            {
+                audioManager.PlayPLayerExplosionSFX();
+                uIUpdater.DestroyHealth();
+            }
         }
+
         PlayHitParticles();
         if (applyCameraShake)
         {
             cameraShake.Play();
         }
-        Destroy(collision.gameObject);
     }
 
     void TakeDamage(int damage)
@@ -49,6 +63,15 @@ public class Heath : MonoBehaviour
     {
         if (heath <= 0)
         {
+            if (gameObject.CompareTag("Player"))
+            {
+                levelMananger.LoadEndGame();
+            }
+            else
+            {
+                audioManager.PlayEnemyExplosionSFX();
+                scoreKeeper.UpdateScore(); 
+            }
             Destroy(gameObject);
         }
     }

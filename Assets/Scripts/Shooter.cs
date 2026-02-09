@@ -7,6 +7,7 @@ public class Shooter : MonoBehaviour
     [SerializeField] float projectileSpeed = 10f;
     [SerializeField] float projectileLifeTime = 5f;
     [SerializeField] float fireRate = 0.2f;
+    [SerializeField] AudioManager audioManager;
 
     public bool isFiring;
     Coroutine fireCoroutine;
@@ -24,6 +25,8 @@ public class Shooter : MonoBehaviour
         }
         else if (!isFiring && fireCoroutine != null)
         {
+            // player shoot
+            audioManager.PlayShootingSFX();
             StopCoroutine(fireCoroutine);
             fireCoroutine = null;
         }

@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: -1598991787019267580}
   m_Layer: 6
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -193,6 +193,7 @@ MonoBehaviour:
   projectileSpeed: 10
   projectileLifeTime: 2
   fireRate: 1
+  audioManager: {fileID: 0}
   isFiring: 0
 --- !u!114 &1702531182701604573
 MonoBehaviour:
@@ -206,7 +207,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d6a26be83c91ee408f09d011e55abac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Heath
-  heath: 20
+  heath: 30
   hitParticle: {fileID: 8561120960844496894, guid: 2c2a6c6d40aeca944b2ee68deae6323e, type: 3}
   applyCameraShake: 1
 --- !u!114 &-1598991787019267580
